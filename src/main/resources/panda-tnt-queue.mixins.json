@@ -1,0 +1,13 @@
+{
+	"required": true,
+	"package": "me.sebastian420.PandaTNTQueue.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"plugin": "me.sebastian420.PandaTNTQueue.mixin.LithiumPlugin",
+	"mixins": [
+		"LithiumExplosionMixin",
+		"ExplosionQueue"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
