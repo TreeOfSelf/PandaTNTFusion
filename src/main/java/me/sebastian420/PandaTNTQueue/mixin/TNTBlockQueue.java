@@ -1,5 +1,6 @@
 package me.sebastian420.PandaTNTQueue.mixin;
 
+import me.sebastian420.PandaTNTQueue.PandaTNTConfig;
 import me.sebastian420.PandaTNTQueue.PandaTNTQueue;
 import me.sebastian420.PandaTNTQueue.TNTEntityAccess;
 import net.minecraft.block.TntBlock;
@@ -43,16 +44,12 @@ public class TNTBlockQueue {
 
     @Inject(method = "onDestroyedByExplosion", at = @At(value = "HEAD"), cancellable = true)
     public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
-        if(PandaTNTQueue.tntCount >= PandaTNTQueue.maxTntAdjusted) {
-            System.out.println("Adjusted: "+PandaTNTQueue.tntCount);
-            System.out.println("Adjusted: "+PandaTNTQueue.maxTntAdjusted);
-
-            TntEntity nearestEntity = getNearestTNTEntity((ServerWorld) world, pos.toCenterPos(), 20);
+        if(PandaTNTQueue.tntCount >= PandaTNTConfig.MaxTNTPrimed) {
+            TntEntity nearestEntity = getNearestTNTEntity((ServerWorld) world, pos.toCenterPos(), 50);
             if (nearestEntity != null) {
                 TNTEntityAccess accessor = (TNTEntityAccess) nearestEntity;
                 accessor.pandaTNTQueue$addPower();
                 ci.cancel();
-                //PandaTNTQueue.addExplosionQueue((ServerWorld) world, pos, explosion);
             }
         }
     }

@@ -65,10 +65,13 @@ public class PandaTNTQueue implements ModInitializer {
 	private void onServerTick(MinecraftServer server) {
 		int tntProcessed = 0;
 
-		maxTntAdjusted = (int) (PandaTNTConfig.MaxTNTPrimed * 10 / server.getAverageTickTime());
+		/*maxTntAdjusted = (int) (PandaTNTConfig.MaxTNTPrimed * 30 / server.getAverageTickTime());
 
+		if (maxTntAdjusted > PandaTNTConfig.MaxTNTPrimed) maxTntAdjusted = PandaTNTConfig.MaxTNTPrimed;
 
-		/*if (maxTntAdjusted > PandaTNTConfig.MaxTNTPrimed) maxTntAdjusted = PandaTNTConfig.MaxTNTPrimed;
+		System.out.println("Count: "+PandaTNTQueue.tntCount);
+		System.out.println("Adjusted: "+PandaTNTQueue.maxTntAdjusted);
+		/*
 
 		while (!TNTExplosionQueue.isEmpty() && tntCount < maxTntAdjusted && tntProcessed < maxTntAdjusted) {
 			TNTExplosionQueueData tntData = TNTExplosionQueue.removeFirst();
