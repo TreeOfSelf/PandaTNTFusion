@@ -20,6 +20,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
+import static net.minecraft.world.explosion.Explosion.getExposure;
+
 @Mixin(TntBlock.class)
 public class TNTBlockQueue {
 
@@ -41,16 +43,20 @@ public class TNTBlockQueue {
 
         return nearestTNT;
     }
-
     @Inject(method = "onDestroyedByExplosion", at = @At(value = "HEAD"), cancellable = true)
     public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
         if(PandaTNTQueue.tntCount >= PandaTNTConfig.MaxTNTPrimed) {
-            TntEntity nearestEntity = getNearestTNTEntity((ServerWorld) world, pos.toCenterPos(), 50);
+            TntEntity nearestEntity = getNearestTNTEntity((ServerWorld) world, pos.toCenterPos(), 5);
             if (nearestEntity != null) {
                 TNTEntityAccess accessor = (TNTEntityAccess) nearestEntity;
                 accessor.pandaTNTQueue$addPower();
-                ci.cancel();
+
+                //nearestEntity.setVelocity(nearestEntity.getVelocity().add(pos.toCenterPos().subtract(nearestEntity.getPos())));
+
             }
+
+            ci.cancel();
+
         }
     }
 }
