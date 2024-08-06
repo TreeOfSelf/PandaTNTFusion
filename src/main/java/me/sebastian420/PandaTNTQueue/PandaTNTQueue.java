@@ -67,10 +67,8 @@ public class PandaTNTQueue implements ModInitializer {
 
 		maxTntAdjusted = (int) (PandaTNTConfig.MaxTNTPrimed * 10 / server.getAverageTickTime());
 
-		if (maxTntAdjusted > PandaTNTConfig.MaxTNTPrimed) maxTntAdjusted = PandaTNTConfig.MaxTNTPrimed;
 
-		System.out.println("TntCount: "+tntCount);
-		System.out.println("maxTntAdjusted: "+maxTntAdjusted);
+		/*if (maxTntAdjusted > PandaTNTConfig.MaxTNTPrimed) maxTntAdjusted = PandaTNTConfig.MaxTNTPrimed;
 
 		while (!TNTExplosionQueue.isEmpty() && tntCount < maxTntAdjusted && tntProcessed < maxTntAdjusted) {
 			TNTExplosionQueueData tntData = TNTExplosionQueue.removeFirst();
@@ -88,9 +86,7 @@ public class PandaTNTQueue implements ModInitializer {
 				tntData.world.getBlockState(tntData.pos).onExploded(tntData.world, tntData.pos, tntData.explosion, (stack, pos) -> {});
 			}
 			tntProcessed++;
-		}
-
-
+		}*/
 
 	}
 

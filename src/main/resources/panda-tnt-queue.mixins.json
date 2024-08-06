@@ -4,7 +4,8 @@
 	"compatibilityLevel": "JAVA_21",
 	"plugin": "me.sebastian420.PandaTNTQueue.mixin.LithiumPlugin",
 	"mixins": [
-		"TNTBlockQueue"
+		"TNTBlockQueue",
+		"TNTEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
