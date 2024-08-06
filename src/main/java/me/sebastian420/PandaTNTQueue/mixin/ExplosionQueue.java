@@ -18,10 +18,7 @@ import java.util.*;
 
 @Mixin(Explosion.class)
 public abstract class ExplosionQueue {
-
-
 	@Shadow @Final private World world;
-
 
 	@Redirect(method = "collectBlocksAndDamageEntities",
 			at = @At(value = "INVOKE", target = "Ljava/util/Set;add(Ljava/lang/Object;)Z"))
