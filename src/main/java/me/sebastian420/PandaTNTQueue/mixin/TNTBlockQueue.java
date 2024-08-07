@@ -3,6 +3,7 @@ package me.sebastian420.PandaTNTQueue.mixin;
 import me.sebastian420.PandaTNTQueue.PandaTNTConfig;
 import me.sebastian420.PandaTNTQueue.PandaTNTQueue;
 import me.sebastian420.PandaTNTQueue.TNTEntityAccess;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.TntBlock;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.TntEntity;
@@ -28,7 +29,7 @@ public class TNTBlockQueue {
     @Unique
     public TntEntity getNearestTNTEntity(ServerWorld world, Vec3d position, double radius) {
         Box searchBox = new Box(position.subtract(radius, radius, radius), position.add(radius, radius, radius));
-        List<TntEntity> tntEntities = world.getEntitiesByType(EntityType.TNT, searchBox, entity -> true);
+        List<TntEntity> tntEntities = world.getEntitiesByType(EntityType.TNT, searchBox, entity -> entity.getBlockState().getBlock() == Blocks.TNT);
 
         TntEntity nearestTNT = null;
         double closestDistance = Double.MAX_VALUE;

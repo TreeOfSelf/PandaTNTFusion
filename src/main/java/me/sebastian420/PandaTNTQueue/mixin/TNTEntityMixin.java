@@ -37,8 +37,12 @@ public abstract class TNTEntityMixin extends Entity implements TNTEntityAccess {
 
     @Override
     public void pandaTNTQueue$addPower() {
-        setPower += 0.025f;
-        if (setPower > 8.0F) setPower = 8.0F;
+        if (setPower < 12.0F) {
+            setPower += 0.2f;
+            TntEntity tntEntity = (TntEntity) (Object) this;
+            tntEntity.setVelocity(tntEntity.getVelocity().multiply(1.02));
+            //tntEntity.setFuse((int) (tntEntity.getFuse() * 1.02));
+        }
     }
 
     @Override
