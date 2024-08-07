@@ -21,10 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-import static net.minecraft.world.explosion.Explosion.getExposure;
-
 @Mixin(TntBlock.class)
-public class TNTBlockQueue {
+public class TNTBlockMixin {
 
     @Unique
     public TntEntity getNearestTNTEntity(ServerWorld world, Vec3d position, double radius) {
@@ -51,13 +49,8 @@ public class TNTBlockQueue {
             if (nearestEntity != null) {
                 TNTEntityAccess accessor = (TNTEntityAccess) nearestEntity;
                 accessor.pandaTNTQueue$addPower();
-
-                //nearestEntity.setVelocity(nearestEntity.getVelocity().add(pos.toCenterPos().subtract(nearestEntity.getPos())));
-
+                ci.cancel();
             }
-
-            ci.cancel();
-
         }
     }
 }

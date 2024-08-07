@@ -38,7 +38,7 @@ public abstract class TNTEntityMixin extends Entity implements TNTEntityAccess {
     @Override
     public void pandaTNTQueue$addPower() {
         if (setPower < 12.0F) {
-            setPower += 0.2f;
+            setPower += 0.1f;
             TntEntity tntEntity = (TntEntity) (Object) this;
             tntEntity.setVelocity(tntEntity.getVelocity().multiply(1.02));
             //tntEntity.setFuse((int) (tntEntity.getFuse() * 1.02));
@@ -56,4 +56,7 @@ public abstract class TNTEntityMixin extends Entity implements TNTEntityAccess {
         this.getWorld().createExplosion(tntEntity, Explosion.createDamageSource(this.getWorld(), tntEntity), this.teleported ? TELEPORTED_EXPLOSION_BEHAVIOR : null, this.getX(), this.getBodyY(0.0625), this.getZ(), this.setPower, false, World.ExplosionSourceType.TNT);
         ci.cancel();
     }
+
+
+
 }
