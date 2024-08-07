@@ -35,6 +35,7 @@ public class PandaTNTConfig {
 
         JsonObject json = new JsonObject();
         json.addProperty("MaxTNNTPrimed", 100);
+        MaxTNTPrimed = 100;
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             GSON.toJson(json, writer);
         } catch (IOException e) {
