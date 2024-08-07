@@ -1,26 +1,26 @@
 {
 	"schemaVersion": 1,
-	"id": "panda-tnt-queue",
+	"id": "panda-tnt-fusion",
 	"version": "${version}",
-	"name": "panda-tnt-queue",
-	"description": "Queue TNT to stop lag like in Paper",
+	"name": "panda-tnt-fusion",
+	"description": "Combines TNT to stop lag with massive TNT explosions",
 	"authors": [
-		"Sebastian420"
+		"TreeOfSelf"
 	],
 	"contact": {
 		"homepage": "",
 		"sources": ""
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/panda-tnt-queue/icon.png",
+	"icon": "assets/panda-tnt-fusion/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"me.sebastian420.PandaTNTQueue.PandaTNTQueue"
+          "me.sebastian420.PandaTNTFusion.PandaTNTFusion"
 		]
 	},
 	"mixins": [
-		"panda-tnt-queue.mixins.json"
+		"panda-tnt-fusion.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",

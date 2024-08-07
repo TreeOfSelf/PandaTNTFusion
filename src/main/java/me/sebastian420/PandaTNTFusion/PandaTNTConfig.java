@@ -1,4 +1,4 @@
-package me.sebastian420.PandaTNTQueue;
+package me.sebastian420.PandaTNTFusion;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,7 +13,7 @@ import static com.mojang.text2speech.Narrator.LOGGER;
 
 
 public class PandaTNTConfig {
-    private static final File CONFIG_FILE = new File("./config/PandaTNTQueue.json");
+    private static final File CONFIG_FILE = new File("./config/PandaTNTFusion.json");
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     public static int MaxTNTPrimed;
 

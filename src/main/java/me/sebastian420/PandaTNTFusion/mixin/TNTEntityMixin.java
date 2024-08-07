@@ -1,6 +1,6 @@
-package me.sebastian420.PandaTNTQueue.mixin;
+package me.sebastian420.PandaTNTFusion.mixin;
 
-import me.sebastian420.PandaTNTQueue.TNTEntityAccess;
+import me.sebastian420.PandaTNTFusion.TNTEntityAccess;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.TntEntity;
@@ -26,29 +26,16 @@ public abstract class TNTEntityMixin extends Entity implements TNTEntityAccess {
         super(type, world);
     }
 
-
     @Unique
     float setPower = 4.0F;
 
     @Override
-    public void pandaTNTQueue$setPower(Float power) {
-        setPower = power;
-    }
-
-    @Override
-    public void pandaTNTQueue$addPower() {
-        if (setPower < 12.0F) {
-            setPower += 0.1f;
-            TntEntity tntEntity = (TntEntity) (Object) this;
-            tntEntity.setVelocity(tntEntity.getVelocity().multiply(1.02));
-            //tntEntity.setFuse((int) (tntEntity.getFuse() * 1.02));
+    public void pandaTNTFusion$addPower() {
+        if (setPower < 16.0F) {
+            setPower += 0.1F;
         }
     }
 
-    @Override
-    public float pandaTNTQueue$getPower() {
-        return setPower;
-    }
 
     @Inject(method = "explode", at = @At(value = "HEAD"), cancellable = true)
     private void explode(CallbackInfo ci) {
@@ -56,7 +43,6 @@ public abstract class TNTEntityMixin extends Entity implements TNTEntityAccess {
         this.getWorld().createExplosion(tntEntity, Explosion.createDamageSource(this.getWorld(), tntEntity), this.teleported ? TELEPORTED_EXPLOSION_BEHAVIOR : null, this.getX(), this.getBodyY(0.0625), this.getZ(), this.setPower, false, World.ExplosionSourceType.TNT);
         ci.cancel();
     }
-
 
 
 }

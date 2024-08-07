@@ -1,8 +1,8 @@
-package me.sebastian420.PandaTNTQueue.mixin;
+package me.sebastian420.PandaTNTFusion.mixin;
 
-import me.sebastian420.PandaTNTQueue.PandaTNTConfig;
-import me.sebastian420.PandaTNTQueue.PandaTNTQueue;
-import me.sebastian420.PandaTNTQueue.TNTEntityAccess;
+import me.sebastian420.PandaTNTFusion.PandaTNTConfig;
+import me.sebastian420.PandaTNTFusion.PandaTNTFusion;
+import me.sebastian420.PandaTNTFusion.TNTEntityAccess;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.TntBlock;
 import net.minecraft.entity.EntityType;
@@ -44,13 +44,13 @@ public class TNTBlockMixin {
     }
     @Inject(method = "onDestroyedByExplosion", at = @At(value = "HEAD"), cancellable = true)
     public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
-        if(PandaTNTQueue.tntCount >= PandaTNTConfig.MaxTNTPrimed) {
+        if(PandaTNTFusion.tntCount >= PandaTNTConfig.MaxTNTPrimed) {
             TntEntity nearestEntity = getNearestTNTEntity((ServerWorld) world, pos.toCenterPos(), 5);
             if (nearestEntity != null) {
                 TNTEntityAccess accessor = (TNTEntityAccess) nearestEntity;
-                accessor.pandaTNTQueue$addPower();
-                ci.cancel();
+                accessor.pandaTNTFusion$addPower();
             }
+            ci.cancel();
         }
     }
 }
