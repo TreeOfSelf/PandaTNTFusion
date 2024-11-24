@@ -43,7 +43,7 @@ public class TNTBlockMixin {
         return nearestTNT;
     }
     @Inject(method = "onDestroyedByExplosion", at = @At(value = "HEAD"), cancellable = true)
-    public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
+    public void onDestroyedByExplosion(ServerWorld world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
         if(PandaTNTFusion.tntCount >= PandaTNTConfig.MaxTNTPrimed) {
             TntEntity nearestEntity = getNearestTNTEntity((ServerWorld) world, pos.toCenterPos(), 5);
             if (nearestEntity != null) {
