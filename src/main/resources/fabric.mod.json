@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "me.sebastian420.PandaTNTFusion.PandaTNTFusion"
+			"me.TreeOfSelf.PandaTNTFusion.PandaTNTFusion"
 		]
 	},
 	"mixins": [

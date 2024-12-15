@@ -1,4 +1,4 @@
-package me.sebastian420.PandaTNTFusion;
+package me.TreeOfSelf.PandaTNTFusion;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;

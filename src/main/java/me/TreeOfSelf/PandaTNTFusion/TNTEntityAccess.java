@@ -1,4 +1,4 @@
-package me.sebastian420.PandaTNTFusion;
+package me.TreeOfSelf.PandaTNTFusion;
 
 public interface TNTEntityAccess {
     void pandaTNTFusion$addPower();

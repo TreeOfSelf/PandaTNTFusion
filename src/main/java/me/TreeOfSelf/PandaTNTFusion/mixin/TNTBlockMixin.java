@@ -1,8 +1,8 @@
-package me.sebastian420.PandaTNTFusion.mixin;
+package me.TreeOfSelf.PandaTNTFusion.mixin;
 
-import me.sebastian420.PandaTNTFusion.PandaTNTConfig;
-import me.sebastian420.PandaTNTFusion.PandaTNTFusion;
-import me.sebastian420.PandaTNTFusion.TNTEntityAccess;
+import me.TreeOfSelf.PandaTNTFusion.PandaTNTFusion;
+import me.TreeOfSelf.PandaTNTFusion.PandaTNTConfig;
+import me.TreeOfSelf.PandaTNTFusion.TNTEntityAccess;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.TntBlock;
 import net.minecraft.entity.EntityType;
@@ -11,7 +11,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

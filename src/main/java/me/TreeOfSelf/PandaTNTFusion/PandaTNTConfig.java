@@ -1,4 +1,4 @@
-package me.sebastian420.PandaTNTFusion;
+package me.TreeOfSelf.PandaTNTFusion;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

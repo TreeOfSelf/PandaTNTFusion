@@ -1,6 +1,6 @@
-package me.sebastian420.PandaTNTFusion.mixin;
+package me.TreeOfSelf.PandaTNTFusion.mixin;
 
-import me.sebastian420.PandaTNTFusion.TNTEntityAccess;
+import me.TreeOfSelf.PandaTNTFusion.TNTEntityAccess;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.TntEntity;
