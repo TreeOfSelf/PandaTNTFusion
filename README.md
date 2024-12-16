@@ -2,7 +2,7 @@
 
 ## Description
 
-Attempts to combine TNT explosions in areas with lots of TNT explosions happening at once. This prevents the server from lagging very badly or crashing with large TNT explosions. This does make it so explosions do not have entirely vanilla behavior.
+Attempts to combine TNT explosions in areas with lots of TNT explosions happening at once. This prevents the server from lagging very badly or crashing with large TNT explosions. This does make it so explosions do not have entirely vanilla behavior when the amount of explosions in an area exceeds the configured max amount of TNT primed.
 
 ## Configuration
 
