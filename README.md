@@ -1,5 +1,3 @@
-![image](https://github.com/user-attachments/assets/99906bf5-707c-4413-80f6-ec0186964931)
-
 # PandaTNTFusion
 
 ## Description
@@ -10,11 +8,11 @@ Attempts to combine TNT explosions in areas with lots of TNT explosions happenin
 
 Under ./config/PandaTNTFusion.json
 
-`
+```
 {
   "MaxTNNTPrimed": 200
 }
-`
+```
 Set the max amount of TNT primed in an area before they start to attempt to combine with enarby explosions
 
 ## Support
