@@ -5,6 +5,7 @@ import me.TreeOfSelf.PandaTNTFusion.PandaTNTConfig;
 import me.TreeOfSelf.PandaTNTFusion.TNTEntityAccess;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.TntBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.TntEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -19,6 +20,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @Mixin(TntBlock.class)
 public class TNTBlockMixin {
@@ -41,15 +45,19 @@ public class TNTBlockMixin {
 
         return nearestTNT;
     }
+
+
+
     @Inject(method = "onDestroyedByExplosion", at = @At(value = "HEAD"), cancellable = true)
     public void onDestroyedByExplosion(ServerWorld world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
         if(PandaTNTFusion.tntCount >= PandaTNTConfig.MaxTNTPrimed) {
-            TntEntity nearestEntity = getNearestTNTEntity((ServerWorld) world, pos.toCenterPos(), 5);
+            TntEntity nearestEntity = getNearestTNTEntity((ServerWorld) world, pos.toCenterPos(), 7);
             if (nearestEntity != null) {
                 TNTEntityAccess accessor = (TNTEntityAccess) nearestEntity;
                 accessor.pandaTNTFusion$addPower();
+                ci.cancel();
             }
-            ci.cancel();
         }
+
     }
 }
