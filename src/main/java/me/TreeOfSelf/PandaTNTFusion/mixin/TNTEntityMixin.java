@@ -43,6 +43,4 @@ public abstract class TNTEntityMixin extends Entity implements TNTEntityAccess {
         this.getWorld().createExplosion(tntEntity, Explosion.createDamageSource(this.getWorld(), tntEntity), this.teleported ? TELEPORTED_EXPLOSION_BEHAVIOR : null, this.getX(), this.getBodyY(0.0625), this.getZ(), this.setPower, false, World.ExplosionSourceType.TNT);
         ci.cancel();
     }
-
-
 }
