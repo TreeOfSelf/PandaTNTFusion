@@ -17,6 +17,10 @@ Under ./config/PandaTNTFusion.json
 ```
 Set the max amount of TNT primed in an area before they start to attempt to combine with enarby explosions
 
+## Try it out
+`hardcoreanarchy.gay`   (Deathban Anarchy)  
+`sky.hardcoreanarchy.gay`   (Skyblock Anarchy)
+
 ## Support
 
 [Support discord here!]( https://discord.gg/3tP3Tqu983)
