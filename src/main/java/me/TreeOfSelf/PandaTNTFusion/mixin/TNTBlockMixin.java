@@ -8,6 +8,7 @@ import net.minecraft.block.TntBlock;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.TntEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -42,8 +43,8 @@ public class TNTBlockMixin {
         return nearestTNT;
     }
     @Inject(method = "onDestroyedByExplosion", at = @At(value = "HEAD"), cancellable = true)
-    public void onDestroyedByExplosion(ServerWorld world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
-        if(PandaTNTFusion.tntCount >= PandaTNTConfig.MaxTNTPrimed) {
+    public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
+        if(PandaTNTFusion.tntCount >= PandaTNTConfig.MaxTNTPrimed && !world.isClient) {
             TntEntity nearestEntity = getNearestTNTEntity((ServerWorld) world, pos.toCenterPos(), 5);
             if (nearestEntity != null) {
                 TNTEntityAccess accessor = (TNTEntityAccess) nearestEntity;
