@@ -22,7 +22,7 @@ public class PandaTNTConfig {
         if (CONFIG_FILE.exists()) {
             try (FileReader reader = new FileReader(CONFIG_FILE)) {
                 JsonObject json = GSON.fromJson(reader, JsonObject.class);
-                MaxTNTPrimed = json.get("MaxTNNTPrimed").getAsInt();
+                MaxTNTPrimed = json.get("MaxTNTPrimed").getAsInt();
             } catch (IOException e) {
                 generateConfig();
             }
@@ -34,7 +34,7 @@ public class PandaTNTConfig {
     private static void generateConfig() {
 
         JsonObject json = new JsonObject();
-        json.addProperty("MaxTNNTPrimed", 100);
+        json.addProperty("MaxTNTPrimed", 100);
         MaxTNTPrimed = 100;
         try (FileWriter writer = new FileWriter(CONFIG_FILE)) {
             GSON.toJson(json, writer);
