@@ -40,7 +40,7 @@ public abstract class TNTEntityMixin extends Entity implements TNTEntityAccess {
     @Inject(method = "explode", at = @At(value = "HEAD"), cancellable = true)
     private void explode(CallbackInfo ci) {
         TntEntity tntEntity = (TntEntity) (Object) this;
-        this.getWorld().createExplosion(tntEntity, Explosion.createDamageSource(this.getWorld(), tntEntity), this.teleported ? TELEPORTED_EXPLOSION_BEHAVIOR : null, this.getX(), this.getBodyY(0.0625), this.getZ(), this.setPower, false, World.ExplosionSourceType.TNT);
+        this.getEntityWorld().createExplosion(tntEntity, Explosion.createDamageSource(this.getEntityWorld(), tntEntity), this.teleported ? TELEPORTED_EXPLOSION_BEHAVIOR : null, this.getX(), this.getBodyY(0.0625), this.getZ(), this.setPower, false, World.ExplosionSourceType.TNT);
         ci.cancel();
     }
 }
