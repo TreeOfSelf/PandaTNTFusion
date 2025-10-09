@@ -12,7 +12,7 @@ Under ./config/PandaTNTFusion.json
 
 ```
 {
-  "MaxTNNTPrimed": 200
+  "MaxTNTPrimed": 200
 }
 ```
 Set the max amount of TNT primed in an area before they start to attempt to combine with enarby explosions
