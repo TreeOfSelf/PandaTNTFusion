@@ -2,10 +2,9 @@ package me.TreeOfSelf.PandaTNTFusion;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.server.world.ServerWorld;
-
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,14 +20,11 @@ public class PandaTNTFusion implements ModInitializer {
 		LOGGER.info("PandaTNTFusion Started!");
 	}
 
-	private void onEntityUnload(Entity entity, ServerWorld serverWorld) {
+	private void onEntityUnload(Entity entity, ServerLevel serverLevel) {
 		if (entity.getType() == EntityType.TNT) tntCount--;
 	}
 
-	private void onEntityLoad(Entity entity, ServerWorld serverWorld) {
-		if (entity.getType() == EntityType.TNT) tntCount++;;
+	private void onEntityLoad(Entity entity, ServerLevel serverLevel) {
+		if (entity.getType() == EntityType.TNT) tntCount++;
 	}
-
-
-
 }
