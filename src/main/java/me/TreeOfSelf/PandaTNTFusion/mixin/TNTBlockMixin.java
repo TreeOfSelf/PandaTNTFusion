@@ -5,7 +5,7 @@ import me.TreeOfSelf.PandaTNTFusion.PandaTNTFusion;
 import me.TreeOfSelf.PandaTNTFusion.TNTEntityAccess;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.block.Blocks;
@@ -26,7 +26,7 @@ public class TNTBlockMixin {
 	@Unique
 	public PrimedTnt getNearestTNTEntity(ServerLevel world, Vec3 position, double radius) {
 		AABB searchBox = new AABB(position.subtract(radius, radius, radius), position.add(radius, radius, radius));
-		List<PrimedTnt> tntEntities = world.getEntities(EntityType.TNT, searchBox, entity -> entity.getBlockState().is(Blocks.TNT));
+		List<PrimedTnt> tntEntities = world.getEntities(EntityTypes.TNT, searchBox, entity -> entity.getBlockState().is(Blocks.TNT));
 
 		PrimedTnt nearestTNT = null;
 		double closestDistance = Double.MAX_VALUE;
@@ -45,7 +45,7 @@ public class TNTBlockMixin {
 	@Inject(method = "wasExploded", at = @At("HEAD"), cancellable = true)
 	public void wasExploded(ServerLevel world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
 		if (PandaTNTFusion.tntCount >= PandaTNTConfig.MaxTNTPrimed) {
-			PrimedTnt nearestEntity = getNearestTNTEntity(world, pos.getCenter(), 5);
+			PrimedTnt nearestEntity = getNearestTNTEntity(world, Vec3.atCenterOf(pos), 5);
 			if (nearestEntity != null) {
 				TNTEntityAccess accessor = (TNTEntityAccess) nearestEntity;
 				accessor.pandaTNTFusion$addPower();

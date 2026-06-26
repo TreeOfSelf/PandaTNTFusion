@@ -4,7 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,10 +21,10 @@ public class PandaTNTFusion implements ModInitializer {
 	}
 
 	private void onEntityUnload(Entity entity, ServerLevel serverLevel) {
-		if (entity.getType() == EntityType.TNT) tntCount--;
+		if (entity.getType() == EntityTypes.TNT) tntCount--;
 	}
 
 	private void onEntityLoad(Entity entity, ServerLevel serverLevel) {
-		if (entity.getType() == EntityType.TNT) tntCount++;
+		if (entity.getType() == EntityTypes.TNT) tntCount++;
 	}
 }
