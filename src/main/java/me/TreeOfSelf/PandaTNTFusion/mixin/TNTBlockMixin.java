@@ -46,11 +46,12 @@ public class TNTBlockMixin {
 	public void wasExploded(ServerLevel world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
 		if (PandaTNTFusion.tntCount >= PandaTNTConfig.MaxTNTPrimed) {
 			PrimedTnt nearestEntity = getNearestTNTEntity(world, Vec3.atCenterOf(pos), 5);
+			// Nothing nearby to fuse into: prime normally, or TNT far from someone else's big blast would just vanish
 			if (nearestEntity != null) {
 				TNTEntityAccess accessor = (TNTEntityAccess) nearestEntity;
 				accessor.pandaTNTFusion$addPower();
+				ci.cancel();
 			}
-			ci.cancel();
 		}
 	}
 }
