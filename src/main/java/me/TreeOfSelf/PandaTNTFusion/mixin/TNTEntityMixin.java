@@ -39,6 +39,11 @@ public abstract class TNTEntityMixin extends Entity implements TNTEntityAccess {
 		}
 	}
 
+	@Override
+	public float pandaTNTFusion$getPower() {
+		return setPower;
+	}
+
 	@Inject(method = "explode", at = @At("HEAD"), cancellable = true)
 	private void explode(CallbackInfo ci) {
 		PrimedTnt tntEntity = (PrimedTnt) (Object) this;

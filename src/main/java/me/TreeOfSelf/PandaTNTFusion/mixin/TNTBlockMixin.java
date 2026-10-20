@@ -42,16 +42,37 @@ public class TNTBlockMixin {
 		return nearestTNT;
 	}
 
+	// Explosions break their blocks one after another, so one cached answer covers all the TNT one blast hits
+	@Unique
+	private static Explosion lastExplosion;
+	@Unique
+	private static boolean lastExplosionBig;
+
+	@Unique
+	private static boolean isBigBlast(ServerLevel world, Explosion explosion) {
+		if (explosion == lastExplosion) return lastExplosionBig;
+		boolean big;
+		if (explosion.getDirectSourceEntity() instanceof TNTEntityAccess tnt && tnt.pandaTNTFusion$getPower() > 4.0F) {
+			big = true;
+		} else {
+			double r = PandaTNTConfig.BigBlastRadius;
+			AABB box = new AABB(explosion.center().subtract(r, r, r), explosion.center().add(r, r, r));
+			big = world.getEntities(EntityTypes.TNT, box, entity -> true).size() >= PandaTNTConfig.BigBlastTNT;
+		}
+		lastExplosion = explosion;
+		lastExplosionBig = big;
+		return big;
+	}
+
 	@Inject(method = "wasExploded", at = @At("HEAD"), cancellable = true)
 	public void wasExploded(ServerLevel world, BlockPos pos, Explosion explosion, CallbackInfo ci) {
-		if (PandaTNTFusion.tntCount >= PandaTNTConfig.MaxTNTPrimed) {
-			PrimedTnt nearestEntity = getNearestTNTEntity(world, Vec3.atCenterOf(pos), 5);
-			// Nothing nearby to fuse into: prime normally, or TNT far from someone else's big blast would just vanish
-			if (nearestEntity != null) {
-				TNTEntityAccess accessor = (TNTEntityAccess) nearestEntity;
-				accessor.pandaTNTFusion$addPower();
-				ci.cancel();
-			}
+		if (PandaTNTFusion.tntCount < PandaTNTConfig.MaxTNTPrimed) return;
+		// Over the limit, small blasts still chain normally; only big ones (and everything past the hard limit) get cut down
+		if (PandaTNTFusion.tntCount < PandaTNTConfig.HardMaxTNTPrimed && !isBigBlast(world, explosion)) return;
+		PrimedTnt nearestEntity = getNearestTNTEntity(world, Vec3.atCenterOf(pos), 5);
+		if (nearestEntity != null) {
+			((TNTEntityAccess) nearestEntity).pandaTNTFusion$addPower();
 		}
+		ci.cancel();
 	}
 }
